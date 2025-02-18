@@ -11,23 +11,6 @@ const LayoutProvider = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
   const isPublicRoute = ["sign-in", "sign-up"].includes(pathname.split("/")[1]);
 
-  console.log("layout provider", isPublicRoute, pathname);
-
-  const getNavBar = () => {
-    if (isPublicRoute) return null;
-    return <NavBar />;
-  };
-
-  // const getFooter = () => {
-  //   if (isPublicRoute) return null;
-  //   return <Footer />;
-  // };
-
-  const getContent = () => {
-    // if (isPublicRoute) return null;
-    return <>{children}</>;
-  };
-
   const getCurrentUser = async () => {
     try {
       const response = await fetchUser();
@@ -47,8 +30,8 @@ const LayoutProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="layoutWrapper">
-      {getNavBar()}
-      {getContent()}
+      <NavBar publicRoute={isPublicRoute} />
+      {children}
       {/* {getFooter()} */}
     </div>
   );
