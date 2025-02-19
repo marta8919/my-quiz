@@ -8,6 +8,7 @@ interface NewUser {
   username: string;
   email: string;
   profilePic: string;
+  userType: string;
 }
 
 export const fetchUser = async () => {
@@ -32,6 +33,7 @@ export const fetchUser = async () => {
         username,
         email: clerckUser?.emailAddresses[0].emailAddress || "",
         profilePic: clerckUser?.imageUrl || "",
+        userType: "admin",
       };
 
       mongoUser = await prisma.user.create({

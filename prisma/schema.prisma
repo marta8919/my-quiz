@@ -12,6 +12,7 @@ model User {
   username    String
   email       String       @unique
   profilePic  String
+  userType    String
   clerkUserId String       @unique
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -26,4 +27,13 @@ model QuizResult {
   correctAnswers Int
   wrongAnswers   Int
   createdAt      DateTime @default(now())
+}
+
+model Question {
+  id             String   @id @default(cuid()) @map("_id")
+  question       String   @unique
+  correctAnswer  String
+  answers    String[]
+  type           String
+  createdAt      DateTime @default(now())  
 }

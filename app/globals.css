@@ -22,10 +22,6 @@ body {
   margin: 0px;
 }
 
-/* .layoutWrapper {
-  width: 100vw;
-} */
-
 .title {
   font-family: "Julius Sans One", serif;
   font-size: 31px;
@@ -38,10 +34,10 @@ body {
 .btn {
   background: var(--dark-green);
   color: white;
-  padding: 21px 42px;
+  padding: 20px;
   border-radius: 9px;
   text-transform: uppercase;
-  letter-spacing: 8px;
+  letter-spacing: 6px;
   font-family: "Julius Sans One", serif;
   box-shadow: unset;
   border: none;
@@ -97,12 +93,6 @@ body {
   margin-top: 80px;
 }
 
-.customImage {
-  border: 1px solid black;
-  width: 600px;
-  height: 400px;
-}
-
 .hero h2 {
   font-size: 31px;
   font-weight: 400;
@@ -114,11 +104,84 @@ body {
 }
 
 .selectedOption {
-  border: 2px solid red;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding-left: 20px;
   cursor: pointer;
+  background-color: var(--green);
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding-left: 20px;
 }
 
 .option:hover {
-  border: 2px solid red;
   cursor: pointer;
+  background-color: var(--green);
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+
+.btnNavWrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.questionsWrapper {
+  background-color: var(--green);
+  width: 900px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Jura", serif;
+  position: relative;
+}
+
+.questionsWrapper button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.question {
+  margin-bottom: 60px;
+}
+
+.questionNumber {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.btnQuestion {
+  background: var(--dark-green);
+  color: white;
+  padding: 20px;
+  border-radius: 9px;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-family: "Julius Sans One", serif;
+  box-shadow: unset;
+  border: none;
+}
+
+.btnQuestionDisabled {
+  background: var(--dark-green);
+  opacity: 0.4;
+  color: white;
+  padding: 20px;
+  border-radius: 9px;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-family: "Julius Sans One", serif;
+  box-shadow: unset;
+  border: none;
 }

@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 
 interface QuizProps {
@@ -6,6 +7,7 @@ interface QuizProps {
     question: string;
     answers: string[];
     correctAnswer: string;
+    type: string;
   }[];
   userId: string | undefined;
 }
@@ -82,36 +84,52 @@ export const Quiz = ({ questions, userId }: QuizProps) => {
     setChecked(false);
   };
 
+  const reStartAction = () => {
+    setShowResults(false);
+    setActiveQuestion(0);
+  };
+
   return (
-    <div>
+    <div className="questionsWrapper">
       {showResults ? (
         <div>
-          Correct Answers: {results.correctAnswers} / {questions.length}
+          <p>
+            Correct Answers: {results.correctAnswers} / {questions.length}
+          </p>
+          <button className="btn" onClick={reStartAction}>
+            re-start
+          </button>
         </div>
       ) : (
-        <div>
-          <div>
+        <>
+          <div className="questionNumber">
             <p>
               {activeQuestion + 1} / {questions.length}
             </p>
           </div>
-          <div>{question}</div>
+          <div className="question">
+            <p>{question}</p>
 
-          {answers.map((oneAnswer: string, index: number) => (
-            <div
-              key={index}
-              onClick={() => onAnswerSelected(oneAnswer, index)}
-              className={
-                selectedAnswerIndex === index ? "selectedOption" : "option"
-              }
-            >
-              {oneAnswer}
-            </div>
-          ))}
-          <button onClick={nextQuestion} className="button" disabled={!checked}>
+            {answers.map((oneAnswer: string, index: number) => (
+              <div
+                key={index}
+                onClick={() => onAnswerSelected(oneAnswer, index)}
+                className={
+                  selectedAnswerIndex === index ? "selectedOption" : "option"
+                }
+              >
+                <span>{oneAnswer}</span>
+              </div>
+            ))}
+          </div>
+          <button
+            onClick={nextQuestion}
+            className={checked ? "btnQuestion" : "btnQuestionDisabled"}
+            disabled={!checked}
+          >
             {activeQuestion === questions.length - 1 ? "Finish Quizz" : "Next"}
           </button>
-        </div>
+        </>
       )}
     </div>
   );
