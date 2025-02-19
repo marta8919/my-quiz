@@ -17,12 +17,12 @@ const LayoutProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await fetchUser();
       //there is a problem here seems like
-      console.log("on get user", response.data);
-      setUserType(response?.data.user.userType);
 
-      if (response ?? response?.error) {
-        throw new Error(response.error);
-      }
+      if(response) setUserType(response?.data.user.userType);
+
+      // if (response && response?.error) {
+      //   throw new Error(response.error);
+      // }
     } catch (err) {
       console.log("is this the error?", err);
     }

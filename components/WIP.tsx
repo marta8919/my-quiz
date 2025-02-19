@@ -2,9 +2,9 @@ import { ConeIcon } from "./Icons/Cone";
 
 export const WIP = () => {
   return (
-    <div>
-      <h3>Working on it</h3>
-      <ConeIcon />
+    <div className="wipWrapper">
+        <ConeIcon />
+      <h3>Working on it. Coming up soon!</h3>
     </div>
   );
 };
