@@ -40,7 +40,6 @@ const LayoutProvider = ({ children }: { children: ReactNode }) => {
         userType={userType}
       />
       {children}
-      {/* {getFooter()} */}
     </div>
   );
 };
