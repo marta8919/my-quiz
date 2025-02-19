@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { Quiz } from "@/components/Quiz";
 import { fetchUser } from "../(auth)/actions/fetchUsers";
 import { fetchQuestions } from "../(auth)/actions/fetchQuestions";
