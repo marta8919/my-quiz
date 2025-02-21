@@ -196,3 +196,60 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.formWrapper {
+  background-color: var(--green);
+  max-width: 900px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  font-family: "Jura", serif;
+  width: 900px;
+  position: relative;
+}
+
+.formWrapper input {
+  border: none;
+  padding: 10px;
+}
+
+.customInput {
+  width: 90%;
+}
+
+.questionTypeRadio {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.optionAnswers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 80%;
+}
+
+.optionAnswers input {
+  width: 100%;
+}
+
+.addedAnswers {
+  display: flex;
+  gap: 10px;
+}
+
+.selectCorrectSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
