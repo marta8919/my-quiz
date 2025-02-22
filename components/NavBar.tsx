@@ -2,15 +2,7 @@ import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { MagicWand } from "./Icons/magicWand";
 
-export const NavBar = ({
-  publicRoute,
-  createRoute,
-  userType,
-}: {
-  publicRoute: boolean;
-  createRoute: boolean;
-  userType: string;
-}) => {
+export const NavBar = ({ publicRoute }: { publicRoute: boolean }) => {
   return (
     <div className="navbarWrapper">
       <Link href="/" className="homeLink">
