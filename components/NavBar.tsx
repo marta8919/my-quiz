@@ -19,11 +19,11 @@ export const NavBar = ({
       </Link>
 
       <div className="btnNavWrapper">
-        {userType === "admin" && !createRoute ? (
-          <Link href={"/create"}>
-            <button className="btn">+ question</button>
-          </Link>
-        ) : null}
+        {/* {userType === "admin" && !createRoute ? ( */}
+        <Link href={"/create"}>
+          <button className="btn">+ question</button>
+        </Link>
+        {/* ) : null} */}
         {publicRoute ? null : (
           <SignOutButton>
             <button className="btn">Log out</button>
