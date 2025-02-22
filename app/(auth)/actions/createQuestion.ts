@@ -11,6 +11,7 @@ interface QuestionInterface {
 }
 
 interface ResponseObject {
+  code: "OK" | "ERROR";
   message: string;
 }
 
@@ -20,13 +21,11 @@ export const createQuestion = async ({
   answers,
   type,
 }: QuestionInterface): Promise<ResponseObject> => {
-
   let mongoQuestion = null;
 
   mongoQuestion = await prisma.question.findUnique({
     where: { question: question },
   });
-
 
   if (!mongoQuestion) {
     mongoQuestion = await prisma.question.create({
@@ -38,8 +37,8 @@ export const createQuestion = async ({
       },
     });
 
-    return { message: "All good" };
+    return { code: "OK", message: "All good" };
   }
 
-  return { message: "Seems like the question already exist!" };
+  return { code: "ERROR", message: "Seems like the question already exist!" };
 };

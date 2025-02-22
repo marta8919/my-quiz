@@ -3,8 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #04080f;
-  --baby-blue: #a1c6ea;
-  --blue: #507dbc;
   --green: rgb(24, 94, 101, 0.32);
   --dark-green: rgb(24, 94, 101, 1);
 }
@@ -199,13 +197,13 @@ body {
 
 .formWrapper {
   background-color: var(--green);
-  max-width: 900px;
   border-radius: 8px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   padding: 20px;
   font-family: "Jura", serif;
   width: 900px;
   position: relative;
+  z-index: 1;
 }
 
 .formWrapper input {
@@ -252,4 +250,47 @@ form {
   flex-direction: column;
   justify-content: center;
   gap: 12px;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.overlayCard {
+  width: 900px;
+  background-color: var(--dark-green);
+  color: white;
+  opacity: 1;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  font-family: "Jura", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightBtn {
+  background: white;
+  padding: 20px;
+  border-radius: 9px;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-family: "Julius Sans One", serif;
+  box-shadow: unset;
+  border: none;
+}
+
+.lightBtn:hover {
+  cursor: pointer;
 }
