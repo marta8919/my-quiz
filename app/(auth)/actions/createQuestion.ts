@@ -10,20 +10,36 @@ interface QuestionInterface {
   type: QuestionType;
 }
 
+interface ResponseObject {
+  message: string;
+}
+
 export const createQuestion = async ({
   question,
   correctAnswer,
   answers,
   type,
-}: QuestionInterface) => {
-  //primero hay que mirar si la pregunta ya existe para no duplicarla
-  console.log("calling create question");
-  await prisma.question.create({
-    data: {
-      question,
-      correctAnswer,
-      type,
-      answers
-    },
+}: QuestionInterface): Promise<ResponseObject> => {
+
+  let mongoQuestion = null;
+
+  mongoQuestion = await prisma.question.findUnique({
+    where: { question: question },
   });
+
+
+  if (!mongoQuestion) {
+    mongoQuestion = await prisma.question.create({
+      data: {
+        question,
+        correctAnswer,
+        type,
+        answers,
+      },
+    });
+
+    return { message: "All good" };
+  }
+
+  return { message: "Seems like the question already exist!" };
 };
