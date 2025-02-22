@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 import { Quiz } from "@/components/Quiz";
 // import { fetchUser } from "../(auth)/actions/fetchUsers";
