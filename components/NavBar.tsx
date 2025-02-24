@@ -1,8 +1,7 @@
-import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { MagicWand } from "./Icons/magicWand";
 
-export const NavBar = ({ publicRoute }: { publicRoute: boolean }) => {
+export const NavBar = () => {
   return (
     <div className="navbarWrapper">
       <Link href="/" className="homeLink">
@@ -11,16 +10,13 @@ export const NavBar = ({ publicRoute }: { publicRoute: boolean }) => {
       </Link>
 
       <div className="btnNavWrapper">
-        {/* {userType === "admin" && !createRoute ? ( */}
-        <Link href={"/create"}>
-          <button className="btn">+ question</button>
+        <Link href="/quiz">
+          <button className="btn">Quiz</button>
         </Link>
-        {/* ) : null} */}
-        {publicRoute ? null : (
-          <SignOutButton>
-            <button className="btn">Log out</button>
-          </SignOutButton>
-        )}
+
+        <Link href="/flash-card">
+          <button className="btn">Flashcards</button>
+        </Link>
       </div>
     </div>
   );

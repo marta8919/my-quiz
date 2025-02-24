@@ -1,18 +1,9 @@
 "use client";
 
+import { quizQuestions } from "@/data";
 import { useState } from "react";
 
-interface QuizProps {
-  questions: {
-    question: string;
-    answers: string[];
-    correctAnswer: string;
-    type: string;
-  }[];
-  userId: string | undefined;
-}
-
-export const Quiz = ({ questions, userId }: QuizProps) => {
+export const Quiz = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(``);
   const [checked, setChecked] = useState(false);
@@ -26,7 +17,8 @@ export const Quiz = ({ questions, userId }: QuizProps) => {
     wrongAnswers: 0,
   });
 
-  const { question, answers, correctAnswer } = questions[activeQuestion];
+  const { question, answers, correctAnswer } =
+    quizQuestions.questions[activeQuestion];
 
   const onAnswerSelected = (answer: string, indx: number) => {
     setChecked(true);
@@ -35,6 +27,7 @@ export const Quiz = ({ questions, userId }: QuizProps) => {
       setSelectedAnswer(answer);
     } else {
       setSelectedAnswer("");
+      //here I should store the incorrect questions so they can be rendered on the results section
     }
   };
 
@@ -52,34 +45,10 @@ export const Quiz = ({ questions, userId }: QuizProps) => {
             wrongAnswers: prev.wrongAnswers + 1,
           }
     );
-    if (activeQuestion !== questions.length - 1) {
+    if (activeQuestion !== quizQuestions.totalQuestions - 1) {
       setActiveQuestion((prev) => prev + 1);
     } else {
       setShowResults(true);
-      fetch("/api/quizResults", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: userId,
-          quizScore: results.score,
-          correctAnswers: results.correctAnswers,
-          wrongAnswers: results.wrongAnswers,
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not working");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Quiz results saved successfully:", data);
-        })
-        .catch((error) => {
-          console.error("Error saving quiz results:", error);
-        });
     }
     setChecked(false);
   };
@@ -94,7 +63,8 @@ export const Quiz = ({ questions, userId }: QuizProps) => {
       {showResults ? (
         <div>
           <p>
-            Correct Answers: {results.correctAnswers} / {questions.length}
+            Correct Answers: {results.correctAnswers} /{" "}
+            {quizQuestions.totalQuestions}
           </p>
           <button className="btn" onClick={reStartAction}>
             re-start
@@ -104,7 +74,7 @@ export const Quiz = ({ questions, userId }: QuizProps) => {
         <>
           <div className="questionNumber">
             <p>
-              {activeQuestion + 1} / {questions.length}
+              {activeQuestion + 1} / {quizQuestions.totalQuestions}
             </p>
           </div>
           <div className="question">
@@ -127,7 +97,9 @@ export const Quiz = ({ questions, userId }: QuizProps) => {
             className={checked ? "btnQuestion" : "btnQuestionDisabled"}
             disabled={!checked}
           >
-            {activeQuestion === questions.length - 1 ? "Finish Quizz" : "Next"}
+            {activeQuestion === quizQuestions.totalQuestions - 1
+              ? "Finish Quizz"
+              : "Next"}
           </button>
         </>
       )}

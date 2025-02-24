@@ -2,17 +2,13 @@
 
 ## Overview
 
-This is a **Next.js** quiz application built with **TypeScript**, **Prisma**, and **MongoDB**.  
-The app allows users to:
-
-- Create quiz questions with **four answers**
-- Do the quiz and get the results at the end
+This is a **Next.js** quiz application that will enable the user to practice for technical interviews, with quiz questions and flashcards.
 
 🎨 **Figma Design**: [Link to Figma](https://www.figma.com/design/AGtNS1mSYmb0rR0OhYDAFK/myQuizz?node-id=0-1&p=f)
 
 ## Tech Stack
 
-- Next.js, TypeScript, Prisma, MongoDB
+- Next.js, TypeScript
 
 ## Getting Started
 
