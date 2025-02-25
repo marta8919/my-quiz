@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { MagicWand } from "./Icons/magicWand";
+import { usePathname } from "next/navigation";
 
 export const NavBar = () => {
+  const pathname = usePathname();
+
   return (
     <div className="navbarWrapper">
       <Link href="/" className="homeLink">
@@ -10,13 +13,15 @@ export const NavBar = () => {
       </Link>
 
       <div className="btnNavWrapper">
-        <Link href="/quiz">
-          <button className="btn">Quiz</button>
-        </Link>
-
-        <Link href="/flash-card">
-          <button className="btn">Flashcards</button>
-        </Link>
+        {pathname === "/quiz" ? (
+          <Link href="/flash-card">
+            <button className="btn">Flashcards</button>
+          </Link>
+        ) : pathname === "/flash-card" ? (
+          <Link href="/quiz">
+            <button className="btn">Quiz</button>
+          </Link>
+        ) : null}
       </div>
     </div>
   );

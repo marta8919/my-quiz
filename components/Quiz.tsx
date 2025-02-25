@@ -2,6 +2,19 @@
 
 import { quizQuestions } from "@/data";
 import { useState } from "react";
+import { Results } from "./Results";
+
+interface ResultObject {
+  score: number;
+  correctAnswers: number;
+  wrongQuestions: QuestionObj[] | null;
+}
+
+export interface QuestionObj {
+  question: string;
+  correctAnswer: string;
+  answers: string[];
+}
 
 export const Quiz = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -11,23 +24,26 @@ export const Quiz = () => {
     null
   );
   const [showResults, setShowResults] = useState(false);
-  const [results, setResults] = useState({
+  const [results, setResults] = useState<ResultObject>({
     score: 0,
     correctAnswers: 0,
-    wrongAnswers: 0,
+    wrongQuestions: null,
   });
+  const [repeatMistakenQ, setRepeatMistakenQ] = useState(false);
 
-  const { question, answers, correctAnswer } =
-    quizQuestions.questions[activeQuestion];
+  const questions = repeatMistakenQ
+    ? (results.wrongQuestions as QuestionObj[])
+    : quizQuestions.questions;
 
-  const onAnswerSelected = (answer: string, indx: number) => {
+  const { question, answers, correctAnswer } = questions[activeQuestion];
+
+  const onAnswerSelected = (answer: string, index: number) => {
     setChecked(true);
-    setSelectedAnswerIndex(indx);
+    setSelectedAnswerIndex(index);
     if (answer === correctAnswer) {
       setSelectedAnswer(answer);
     } else {
       setSelectedAnswer("");
-      //here I should store the incorrect questions so they can be rendered on the results section
     }
   };
 
@@ -42,7 +58,9 @@ export const Quiz = () => {
           }
         : {
             ...prev,
-            wrongAnswers: prev.wrongAnswers + 1,
+            wrongQuestions: prev.wrongQuestions
+              ? [...prev.wrongQuestions, questions[activeQuestion]]
+              : [questions[activeQuestion]],
           }
     );
     if (activeQuestion !== quizQuestions.totalQuestions - 1) {
@@ -53,10 +71,23 @@ export const Quiz = () => {
     setChecked(false);
   };
 
+  // el array de preguntas incorrectas se tiene que resetar en algún momento sino se siguen añadiendo eternamente.
+
   const reStartAction = () => {
     setShowResults(false);
     setActiveQuestion(0);
+    setResults({
+      score: 0,
+      correctAnswers: 0,
+      wrongQuestions: [],
+    });
   };
+
+  // const repeatWrongQuestions = () => {
+  //   setShowResults(false);
+  //   setActiveQuestion(0);
+  //   setRepeatMistakenQ(true);
+  // };
 
   return (
     <div className="questionsWrapper">
@@ -66,6 +97,16 @@ export const Quiz = () => {
             Correct Answers: {results.correctAnswers} /{" "}
             {quizQuestions.totalQuestions}
           </p>
+          {results.wrongQuestions ? (
+            <>
+              <Results questions={results.wrongQuestions} />
+
+              {/* <button className="btn" onClick={repeatWrongQuestions}>
+                I want to repeat these questions
+              </button> */}
+            </>
+          ) : null}
+
           <button className="btn" onClick={reStartAction}>
             re-start
           </button>
