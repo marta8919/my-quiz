@@ -97,18 +97,11 @@ export const Quiz = () => {
   return (
     <div className="questionsWrapper">
       {showResults ? (
-        <div>
-          <p>
-            Correct Answers: {results.score} / {totalQuizLength}
-          </p>
-          {(results.wrongQuestionsIdx && handleIncorrectQuestions()) ?? (
-            <Results questions={handleIncorrectQuestions() as string[]} />
-          )}
-
-          <button className="btn" onClick={reStartAction}>
-            re-start
-          </button>
-        </div>
+        <Results
+          questions={handleIncorrectQuestions()}
+          score={results.score + "/" + totalQuizLength}
+          reStartAction={reStartAction}
+        />
       ) : (
         <>
           <div className="questionNumber">

@@ -1,7 +1,7 @@
 export const Wrong = () => {
   return (
     <svg
-      fill="#000000"
+      fill="white"
       width="30px"
       height="30px"
       viewBox="0 0 200 200"
