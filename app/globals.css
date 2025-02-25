@@ -116,6 +116,7 @@ body {
   color: white;
   border-radius: 8px;
   border: none;
+  position: relative;
 }
 
 .option {
@@ -123,6 +124,12 @@ body {
   align-items: center;
   height: 30px;
   padding-left: 20px;
+  position: relative;
+}
+
+.answer {
+  position: absolute;
+  left: 55px;
 }
 
 .option:hover {
@@ -150,13 +157,12 @@ body {
   position: relative;
 }
 
-/* .questionsWrapper > btn {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-} */
-
 .question {
+  max-width: 80%;
+  overflow-wrap: break-word;
+}
+
+.questionBox {
   margin-bottom: 60px;
 }
 
@@ -302,6 +308,20 @@ form {
   cursor: pointer;
 }
 
+.footer {
+  font-family: "Jura", serif;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  padding: 20px;
+}
+
 @media (max-width: 430px) {
   .title {
     font-size: 18px;
@@ -347,6 +367,10 @@ form {
   }
 
   .btnNavWrapper {
+    display: none;
+  }
+
+  .footer {
     display: none;
   }
 }

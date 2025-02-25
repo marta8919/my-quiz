@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { MagicWand } from "./Icons/magicWand";
 import { usePathname } from "next/navigation";

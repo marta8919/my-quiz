@@ -3,11 +3,12 @@
 import { quizQuestions } from "@/data";
 import { useState } from "react";
 import { Results } from "./Results";
+import { Wrong } from "./Icons/Wrong";
+import { Correct } from "./Icons/Correct";
 
 interface ResultObject {
   score: number;
-  correctAnswers: number;
-  wrongQuestions: QuestionObj[] | null;
+  wrongQuestionsIdx: number[] | null;
 }
 
 export interface QuestionObj {
@@ -26,16 +27,15 @@ export const Quiz = () => {
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState<ResultObject>({
     score: 0,
-    correctAnswers: 0,
-    wrongQuestions: null,
+    wrongQuestionsIdx: null,
   });
-  const [repeatMistakenQ, setRepeatMistakenQ] = useState(false);
+  const [showQuestionResult, setShowQuestionResult] = useState(false);
 
-  const questions = repeatMistakenQ
-    ? (results.wrongQuestions as QuestionObj[])
-    : quizQuestions.questions;
+  const questions = quizQuestions.questions;
 
   const { question, answers, correctAnswer } = questions[activeQuestion];
+
+  const totalQuizLength = questions.length;
 
   const onAnswerSelected = (answer: string, index: number) => {
     setChecked(true);
@@ -48,64 +48,62 @@ export const Quiz = () => {
   };
 
   const nextQuestion = () => {
-    setSelectedAnswerIndex(null);
+    setShowQuestionResult(true);
     setResults((prev) =>
       selectedAnswer
         ? {
             ...prev,
             score: prev.score + 1,
-            correctAnswers: prev.correctAnswers + 1,
           }
         : {
             ...prev,
-            wrongQuestions: prev.wrongQuestions
-              ? [...prev.wrongQuestions, questions[activeQuestion]]
-              : [questions[activeQuestion]],
+            wrongQuestionsIdx: prev.wrongQuestionsIdx
+              ? [...prev.wrongQuestionsIdx, activeQuestion]
+              : [activeQuestion],
           }
     );
-    if (activeQuestion !== quizQuestions.totalQuestions - 1) {
-      setActiveQuestion((prev) => prev + 1);
-    } else {
-      setShowResults(true);
-    }
-    setChecked(false);
+    window.setTimeout(() => {
+      setShowQuestionResult(false);
+      setSelectedAnswerIndex(null);
+      if (activeQuestion !== totalQuizLength - 1) {
+        setActiveQuestion((prev) => prev + 1);
+      } else {
+        setShowResults(true);
+      }
+      setChecked(false);
+    }, 1000);
   };
-
-  // el array de preguntas incorrectas se tiene que resetar en algún momento sino se siguen añadiendo eternamente.
 
   const reStartAction = () => {
     setShowResults(false);
     setActiveQuestion(0);
     setResults({
       score: 0,
-      correctAnswers: 0,
-      wrongQuestions: [],
+      wrongQuestionsIdx: null,
     });
   };
 
-  // const repeatWrongQuestions = () => {
-  //   setShowResults(false);
-  //   setActiveQuestion(0);
-  //   setRepeatMistakenQ(true);
-  // };
+  const handleIncorrectQuestions = (): string[] | null => {
+    const array = [];
+    if (results.wrongQuestionsIdx) {
+      for (const questionIdx of results.wrongQuestionsIdx) {
+        array.push(questions[questionIdx].question);
+      }
+      return array;
+    }
+    return null;
+  };
 
   return (
     <div className="questionsWrapper">
       {showResults ? (
         <div>
           <p>
-            Correct Answers: {results.correctAnswers} /{" "}
-            {quizQuestions.totalQuestions}
+            Correct Answers: {results.score} / {totalQuizLength}
           </p>
-          {results.wrongQuestions ? (
-            <>
-              <Results questions={results.wrongQuestions} />
-
-              {/* <button className="btn" onClick={repeatWrongQuestions}>
-                I want to repeat these questions
-              </button> */}
-            </>
-          ) : null}
+          {(results.wrongQuestionsIdx && handleIncorrectQuestions()) ?? (
+            <Results questions={handleIncorrectQuestions() as string[]} />
+          )}
 
           <button className="btn" onClick={reStartAction}>
             re-start
@@ -115,11 +113,11 @@ export const Quiz = () => {
         <>
           <div className="questionNumber">
             <p>
-              {activeQuestion + 1} / {quizQuestions.totalQuestions}
+              {activeQuestion + 1} / {totalQuizLength}
             </p>
           </div>
-          <div className="question">
-            <p>{question}</p>
+          <div className="questionBox">
+            <p className="question">{question}</p>
 
             {answers.map((oneAnswer: string, index: number) => (
               <div
@@ -129,18 +127,24 @@ export const Quiz = () => {
                   selectedAnswerIndex === index ? "selectedOption" : "option"
                 }
               >
-                <span>{oneAnswer}</span>
+                {showQuestionResult && selectedAnswerIndex === index ? (
+                  selectedAnswer === correctAnswer ? (
+                    <Correct />
+                  ) : (
+                    <Wrong />
+                  )
+                ) : null}
+                <span className="answer">{oneAnswer}</span>
               </div>
             ))}
           </div>
+
           <button
             onClick={nextQuestion}
             className={checked ? "btnQuestion" : "btnQuestionDisabled"}
             disabled={!checked}
           >
-            {activeQuestion === quizQuestions.totalQuestions - 1
-              ? "Finish Quizz"
-              : "Next"}
+            {activeQuestion === totalQuizLength - 1 ? "Finish Quizz" : "Next"}
           </button>
         </>
       )}

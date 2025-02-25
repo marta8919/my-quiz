@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import LayoutProvider from "@/providers/LayoutProvider";
+import { Footer } from "@/components/Footer";
+import { NavBar } from "@/components/NavBar";
 
 export const metadata: Metadata = {
   title: "Web Dev Quiz app",
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <LayoutProvider>{children}</LayoutProvider>
+        <NavBar />
+        {children}
+        <Footer />
       </body>
     </html>
   );
