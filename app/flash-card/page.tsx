@@ -1,10 +1,11 @@
 import { FlashCard } from "@/components/FlashCard";
+import { PageWrapper } from "@/components/PageWrapper";
 
 const Page = () => {
   return (
-    <div className="page">
+    <PageWrapper>
       <FlashCard />
-    </div>
+    </PageWrapper>
   );
 };
 

@@ -309,6 +309,15 @@ body {
   text-align: end;
 }
 
+html.is-changing .transition-fade {
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+/* Define the styles for the unloaded pages */
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
 @media (max-width: 430px) {
   .title {
     font-size: 18px;

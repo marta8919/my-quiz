@@ -1,10 +1,11 @@
+import { PageWrapper } from "@/components/PageWrapper";
 import { Quiz } from "@/components/Quiz";
 
 const Page = async () => {
   return (
-    <div className="page">
+    <PageWrapper>
       <Quiz />
-    </div>
+    </PageWrapper>
   );
 };
 

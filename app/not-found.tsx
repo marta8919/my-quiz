@@ -1,9 +1,10 @@
 import { Fish } from "@/components/Icons/Fish";
+import { PageWrapper } from "@/components/PageWrapper";
 import Link from "next/link";
 
 export default function Custom404() {
   return (
-    <div className="page">
+    <PageWrapper>
       <div className="overlayCard">
         <Fish />
         <h3>You seem lost!</h3>
@@ -20,6 +21,6 @@ export default function Custom404() {
           </Link>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
