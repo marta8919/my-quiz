@@ -1,9 +1,9 @@
-import { WIP } from "@/components/WIP";
+import { FlashCard } from "@/components/FlashCard";
 
 const Page = () => {
   return (
     <div className="page">
-      <WIP />
+      <FlashCard />
     </div>
   );
 };

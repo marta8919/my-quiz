@@ -35,7 +35,7 @@ body {
   padding: 20px;
   border-radius: 9px;
   text-transform: uppercase;
-  letter-spacing: 6px;
+  letter-spacing: 3px;
   font-family: "Julius Sans One", serif;
   box-shadow: unset;
   border: none;
@@ -150,7 +150,7 @@ body {
   width: 80%;
   max-width: 600px;
   min-width: 320px;
-  padding: 20px;
+  padding: 40px;
   border-radius: 8px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Jura", serif;
@@ -158,7 +158,6 @@ body {
 }
 
 .question {
-  max-width: 80%;
   overflow-wrap: break-word;
 }
 
@@ -167,9 +166,7 @@ body {
 }
 
 .questionNumber {
-  position: absolute;
-  right: 20px;
-  top: 20px;
+  text-align: end;
 }
 
 .btnQuestion {
@@ -207,76 +204,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.formWrapper {
-  background-color: var(--green);
-  border-radius: 8px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  padding: 20px;
-  font-family: "Jura", serif;
-  width: 900px;
-  position: relative;
-  z-index: 1;
-}
-
-.formWrapper input {
-  border: none;
-  padding: 10px;
-}
-
-.customInput {
-  width: 90%;
-}
-
-.questionTypeRadio {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.optionAnswers {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  width: 80%;
-}
-
-.optionAnswers input {
-  width: 100%;
-}
-
-.addedAnswers {
-  display: flex;
-  gap: 10px;
-}
-
-.selectCorrectSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
-}
-
-.overlay {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(255, 255, 255, 0.22);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 2;
 }
 
 .overlayCard {
@@ -344,6 +271,44 @@ form {
   list-style: none;
 }
 
+.flashQuestionText {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.flashQuestion {
+  text-transform: capitalize;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flashBtnWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.flashQuestionsWrapper {
+  background-color: var(--green);
+  width: 80%;
+  max-width: 600px;
+  min-width: 320px;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Jura", serif;
+  height: 400px;
+}
+
+.nextBtnFlash {
+  width: 100%;
+  text-align: end;
+}
+
 @media (max-width: 430px) {
   .title {
     font-size: 18px;
@@ -380,6 +345,11 @@ form {
 
   .questionsWrapper {
     width: 80%;
+    padding: 20px;
+  }
+  .flashQuestionsWrapper {
+    width: 80%;
+    padding: 20px;
   }
 
   .wipWrapper {
@@ -392,5 +362,29 @@ form {
 
   .footer {
     display: none;
+  }
+
+  .flashBtnWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .overlayCard {
+    width: 80%;
+  }
+
+  .btnWrapper {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nextBtnFlash {
+    text-align: unset;
+  }
+
+  .nextBtnFlash .btn {
+    width: 100%;
   }
 }
