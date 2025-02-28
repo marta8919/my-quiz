@@ -87,6 +87,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  position: relative;
 }
 
 .btnWrapper {
@@ -302,6 +303,8 @@ body {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Jura", serif;
   height: 400px;
+  position: absolute;
+  top: 50%;
 }
 
 .nextBtnFlash {
