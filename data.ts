@@ -105,47 +105,55 @@ export const quizQuestions = {
       correctAnswer: "false",
     },
   ],
-  flashCards: [
-    {
-      question: "What is the difference between null and undefined?",
-      answer:
-        "Null is a javascript object and undefined is a javascript data type. Both are falsy values tho. undefined typically means the variable has not been declared or haven’t assign it a value. Whereas null normally implies intention.  answer",
-    },
-    {
-      question: "What is the difference between var, let and const?",
-      answer:
-        "The main difference is scope, const and let are block-scoped, and var is function scoped. Now with this example var is reachable outside the if block, where it is declared, if var is replaced by let or const, won’t be. Const cannot be reassigned, that’s the difference between let and const.",
-    },
-    {
-      question: "What are immediately invoked functions",
-      answer:
-        "Anonymous function that is executed immediately after it is declared, also known as self-executing anonymous function. Benefits would be they create a new scope as any function, so basically creating new variables within that function won’t pollute the global namespace. It is also possible to use `await` by creating an async IIFE.",
-    },
-    {
-      question: "What does the spread operator do?",
-      answer:
-        "Spread operator creates only a shallow copy, which means only the top level structured is copied. Any nested objects (which is the case of the object name), won’t be recursively copied. So, in the case as age it is copied since it’s top level, so it’s primitive values are copied, but for nested objects just as name, only their references are copied.So in this case when doing `person2.name.first` , both person2 and person1 are pointing to the same object.",
-    },
-    {
-      question: "What is a callback function?",
-      answer:
-        "Callback is a function that is passed to another function as an argument. Commonly used on array methods such as .reduce .forEach .map .",
-    },
-    {
-      question: "What is event propagation?",
-      answer:
-        "How events travel in nested elements. Has to phases, capturing an bubbling. Bubbling is from the inner most component to the outer most component, whereas capturing is the other way around. Capture happens first tho.",
-    },
-    {
-      question: "What is a short circuit evaluation?",
-      answer:
-        "Mechanism for what the logical expressions are evaluated only has much as needed. In this case since the first operator is true, it is enough to determine the result of the expression.",
-    },
-    {
-      question: "What are higher order functions?",
-      answer:
-        "Functions are take other functions or return other functions. Javascript functions are actually objects as type. So basically similar to callback function, with the difference that a higher order function takes at least on function as argument and/or returns another function as output. Callback is the method you pass through, higher order function is the one that consumes that callback.",
-    },
+  flashCards: {
+    javascript: [
+      {
+        question: "What is the difference between null and undefined?",
+        answer:
+          "Null is a javascript object and undefined is a javascript data type. Both are falsy values tho. undefined typically means the variable has not been declared or haven’t assign it a value. Whereas null normally implies intention.  answer",
+      },
+      {
+        question: "What is the difference between var, let and const?",
+        answer:
+          "The main difference is scope, const and let are block-scoped, and var is function scoped. Now with this example var is reachable outside the if block, where it is declared, if var is replaced by let or const, won’t be. Const cannot be reassigned, that’s the difference between let and const.",
+      },
+      {
+        question: "What are immediately invoked functions?",
+        answer:
+          "Anonymous function that is executed immediately after it is declared, also known as self-executing anonymous function. Benefits would be they create a new scope as any function, so basically creating new variables within that function won’t pollute the global namespace. It is also possible to use `await` by creating an async IIFE.",
+      },
+      {
+        question: "What does the spread operator do?",
+        answer:
+          "Spread operator creates only a shallow copy, which means only the top level structured is copied. Any nested objects (which is the case of the object name), won’t be recursively copied. So, in the case as age it is copied since it’s top level, so it’s primitive values are copied, but for nested objects just as name, only their references are copied.So in this case when doing `person2.name.first` , both person2 and person1 are pointing to the same object.",
+      },
+      {
+        question: "What is a callback function?",
+        answer:
+          "Callback is a function that is passed to another function as an argument. Commonly used on array methods such as .reduce .forEach .map .",
+      },
+      {
+        question: "What is event propagation?",
+        answer:
+          "How events travel in nested elements. Has to phases, capturing an bubbling. Bubbling is from the inner most component to the outer most component, whereas capturing is the other way around. Capture happens first tho.",
+      },
+      {
+        question: "What is a short circuit evaluation?",
+        answer:
+          "Mechanism for what the logical expressions are evaluated only has much as needed. In this case since the first operator is true, it is enough to determine the result of the expression.",
+      },
+      {
+        question: "What are higher order functions?",
+        answer:
+          "Functions are take other functions or return other functions. Javascript functions are actually objects as type. So basically similar to callback function, with the difference that a higher order function takes at least on function as argument and/or returns another function as output. Callback is the method you pass through, higher order function is the one that consumes that callback.",
+      },
+      {
+        question: "Explain event delegation.",
+        answer:
+          "Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are: Memory footpring goes down because only one single handles is needed on the parent elements, rather than having to attach event handlers on each descendant. And there is no need to unbind the handler from elments that are removed and to bind the event for new elements.",
+      },
+    ],
+
     // { question: "test question 3", answer: "test answer" },
     // { question: "test question 3", answer: "test answer" },
     // { question: "test question 3", answer: "test answer" },
@@ -166,6 +174,5 @@ export const quizQuestions = {
     // { question: "test question 3", answer: "test answer" },
     // { question: "test question 3", answer: "test answer" },
     // { question: "test question 3", answer: "test answer" },
-    // { question: "test question 3", answer: "test answer" },
-  ],
+  },
 };

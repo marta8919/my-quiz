@@ -8,21 +8,4 @@ This is a **Next.js** quiz application that will enable the user to practice for
 
 ## Tech Stack
 
-- Next.js, TypeScript
-
-## Getting Started
-
-### Prerequisites
-
-Ensure you have the following installed:
-
-- [Node.js](https://nodejs.org/)
-- [MongoDB](https://www.mongodb.com/) _(local or Atlas cloud database)_
-
-### Installation
-
-1. **Clone the repository**
-   ```sh
-   git clone https://github.com/your-repo.git
-   cd your-repo
-   ```
+- Next.js, TypeScript, Material UI

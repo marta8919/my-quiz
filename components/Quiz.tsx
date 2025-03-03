@@ -1,21 +1,13 @@
 "use client";
 
 import { quizQuestions } from "@/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Results } from "./Results";
 import { Wrong } from "./Icons/Wrong";
 import { Correct } from "./Icons/Correct";
-
-interface ResultObject {
-  score: number;
-  wrongQuestionsIdx: number[] | null;
-}
-
-export interface QuestionObj {
-  question: string;
-  correctAnswer: string;
-  answers: string[];
-}
+import { QuestionObj, QuizSetUp, ResultObject } from "@/types";
+import { SetUpCard } from "./SetUpCard";
+import { shuffleArray } from "@/utils";
 
 export const Quiz = () => {
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -30,8 +22,19 @@ export const Quiz = () => {
     wrongQuestionsIdx: null,
   });
   const [showQuestionResult, setShowQuestionResult] = useState(false);
+  const [quizSetUp, setQuizSetUp] = useState<QuizSetUp | boolean>(true);
+  const [questions, setQuestions] = useState<QuestionObj[]>(
+    shuffleArray(quizQuestions.questions)
+  );
 
-  const questions = quizQuestions.questions;
+  useEffect(() => {
+    if (quizSetUp && typeof quizSetUp == "object") {
+      const newArr = quizQuestions.questions.slice(0, quizSetUp.customLength);
+      setQuestions(shuffleArray(newArr));
+    } else if (quizSetUp) {
+      setQuestions(shuffleArray(quizQuestions.questions));
+    }
+  }, [quizSetUp, setQuestions]);
 
   const { question, answers, correctAnswer } = questions[activeQuestion];
 
@@ -81,6 +84,7 @@ export const Quiz = () => {
       score: 0,
       wrongQuestionsIdx: null,
     });
+    setQuizSetUp(true);
   };
 
   const handleIncorrectQuestions = (): string[] | null => {
@@ -93,6 +97,16 @@ export const Quiz = () => {
     }
     return null;
   };
+
+  if (quizSetUp == true) {
+    return (
+      <SetUpCard
+        type="Quiz"
+        setQuizSetUp={setQuizSetUp}
+        total={totalQuizLength}
+      />
+    );
+  }
 
   return (
     <div className="questionsWrapper">

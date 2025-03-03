@@ -312,13 +312,46 @@ body {
   text-align: end;
 }
 
-html.is-changing .transition-fade {
-  transition: opacity 0.25s;
-  opacity: 1;
+.questionsWrapper h3 {
+  text-align: center;
 }
-/* Define the styles for the unloaded pages */
-html.is-animating .transition-fade {
-  opacity: 0;
+
+.sliderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slider {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sliderLabel {
+  min-width: 100px;
+}
+
+.timeWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.settingsWrapper {
+  background-color: var(--green);
+  width: 80%;
+  max-width: 600px;
+  min-width: 320px;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: "Jura", serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 }
 
 @media (max-width: 430px) {
@@ -355,10 +388,12 @@ html.is-animating .transition-fade {
     text-align: right;
   }
 
-  .questionsWrapper {
+  .questionsWrapper,
+  .settingsWrapper {
     width: 80%;
     padding: 20px;
   }
+
   .flashQuestionsWrapper {
     width: 80%;
     padding: 20px;
@@ -398,5 +433,10 @@ html.is-animating .transition-fade {
 
   .nextBtnFlash .btn {
     width: 100%;
+  }
+
+  .sliderWrapper,
+  .slider {
+    flex-direction: column;
   }
 }

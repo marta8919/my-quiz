@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { Badge } from "./Icons/Badge";
 import { AnimatePresence, motion } from "motion/react";
+import { shuffleArray } from "@/utils";
 
 export const FlashCard = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [whatNext, setWhatNext] = useState(false);
 
-  const questions = quizQuestions.flashCards;
+  const questions = shuffleArray(quizQuestions.flashCards.javascript);
 
   const { question, answer } = questions[activeQuestion];
 
