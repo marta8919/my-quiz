@@ -1,4 +1,4 @@
-import { QuizSetUp } from "@/types";
+import { FlashSetUp, QuizSetUp } from "@/types";
 import { Dispatch, SetStateAction, useState } from "react";
 import Slider from "@mui/material/Slider";
 // import { Switch } from "@mui/material";
@@ -9,7 +9,7 @@ export const SetUpCard = ({
   total,
 }: {
   type: "Quiz" | "Flash";
-  setQuizSetUp: Dispatch<SetStateAction<boolean | QuizSetUp>>;
+  setQuizSetUp: Dispatch<SetStateAction<boolean | QuizSetUp | FlashSetUp>>;
   total: number;
 }) => {
   const handleGo = () => {

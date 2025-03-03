@@ -1,17 +1,33 @@
 "use client";
 import { quizQuestions } from "@/data";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Badge } from "./Icons/Badge";
 import { AnimatePresence, motion } from "motion/react";
 import { shuffleArray } from "@/utils";
+import { FlashQuestionObj, FlashSetUp } from "@/types";
+import { SetUpCard } from "./SetUpCard";
 
 export const FlashCard = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [whatNext, setWhatNext] = useState(false);
+  const [flashSetUp, setFlashSetUp] = useState<FlashSetUp | boolean>(true);
+  const [questions, setQuestions] = useState<FlashQuestionObj[]>(
+    shuffleArray(quizQuestions.flashCards.javascript)
+  );
 
-  const questions = shuffleArray(quizQuestions.flashCards.javascript);
+  useEffect(() => {
+    if (flashSetUp && typeof flashSetUp == "object") {
+      const newArr = quizQuestions.flashCards.javascript.slice(
+        0,
+        flashSetUp.customLength
+      );
+      setQuestions(shuffleArray(newArr));
+    } else if (flashSetUp) {
+      setQuestions(shuffleArray(quizQuestions.flashCards.javascript));
+    }
+  }, [flashSetUp, setQuestions]);
 
   const { question, answer } = questions[activeQuestion];
 
@@ -32,6 +48,7 @@ export const FlashCard = () => {
     setActiveQuestion(0);
     setShowAnswer(false);
     setWhatNext(false);
+    setFlashSetUp(true);
   };
 
   const variants = {
@@ -42,6 +59,16 @@ export const FlashCard = () => {
       };
     },
   };
+
+  if (flashSetUp == true) {
+    return (
+      <SetUpCard
+        type="Flash"
+        setQuizSetUp={setFlashSetUp}
+        total={totalLength}
+      />
+    );
+  }
 
   if (whatNext) {
     return (

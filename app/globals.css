@@ -7,13 +7,6 @@
   --dark-green: rgb(24, 94, 101, 1);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
 body {
   align-items: center;
   justify-content: center;
@@ -352,6 +345,10 @@ body {
   flex-direction: column;
   gap: 20px;
   align-items: center;
+}
+
+.css-1rju2q6-MuiButtonBase-root-MuiMenuItem-root {
+  font-family: "Jura";
 }
 
 @media (max-width: 430px) {

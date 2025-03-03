@@ -19,10 +19,19 @@ export interface QuestionObj {
   answers: string[];
 }
 
+export interface FlashQuestionObj {
+  question: string;
+  answer: string;
+}
+
 export interface QuizSetUp {
   customLength: number;
   timer: boolean;
   seconds: number;
+}
+
+export interface FlashSetUp {
+  customLength: number;
 }
 
 interface FlashCard {
