@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Results } from "./Results";
 import { Wrong } from "./Icons/Wrong";
 import { Correct } from "./Icons/Correct";
-import { QuestionObj, QuizSetUp, ResultObject } from "@/types";
+import { FlashSetUp, QuestionObj, QuizSetUp, ResultObject } from "@/types";
 import { SetUpCard } from "./SetUpCard";
 import { shuffleArray } from "@/utils";
 
@@ -22,7 +22,9 @@ export const Quiz = () => {
     wrongQuestionsIdx: null,
   });
   const [showQuestionResult, setShowQuestionResult] = useState(false);
-  const [quizSetUp, setQuizSetUp] = useState<QuizSetUp | boolean>(true);
+  const [quizSetUp, setQuizSetUp] = useState<boolean | QuizSetUp | FlashSetUp>(
+    true
+  );
   const [questions, setQuestions] = useState<QuestionObj[]>(
     shuffleArray(quizQuestions.questions)
   );
