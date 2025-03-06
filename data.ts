@@ -152,6 +152,11 @@ export const quizQuestions = {
         answer:
           "Event delegation is a technique involving adding event listeners to a parent element instead of adding them to the descendant elements. The listener will fire whenever the event is triggered on the descendant elements due to event bubbling up the DOM. The benefits of this technique are: Memory footpring goes down because only one single handles is needed on the parent elements, rather than having to attach event handlers on each descendant. And there is no need to unbind the handler from elments that are removed and to bind the event for new elements.",
       },
+      {
+        question: "Explain array.prototype.reduce().",
+        answer:
+          'The reduce() method of Array instances executes a user-supplied "reducer" callback function on each element of the array, in order, passing in the return value from the calculation on the preceding element. The final result of running the reducer across all elements of the array is a single value. The first time that the callback is run there is no "return value of the previous calculation". If supplied, an initial value may be used in its place. Otherwise the array element at index 0 is used as the initial value and iteration starts from the next element (index 1 instead of index 0).',
+      },
     ],
 
     // { question: "test question 3", answer: "test answer" },

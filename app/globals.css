@@ -273,7 +273,7 @@ body {
 .flashQuestion {
   text-transform: capitalize;
   text-align: center;
-  height: 100%;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -295,7 +295,7 @@ body {
   border-radius: 8px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-family: "Jura", serif;
-  height: 400px;
+  min-height: 400px;
   position: absolute;
   top: 50%;
 }
